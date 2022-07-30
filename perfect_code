@@ -139,17 +139,18 @@ Label = tk.Label(root, text='''\nDear User,
     A program by : Nishant V H, Priyanshu Singh and Yakhsita Hansdah\t\n''', font=("Arial Bold", 10))
 
 # slide1
-
-# slide1
-
+                                             # lable
 title = tk.Label(root, pady=2, text="Recycling Software for Smart India Hackathon 2022", bd=12, bg=bg_color,
                   fg='white', font=('times new roman', 25, 'bold'), relief=GROOVE, justify=CENTER)
 F1 = tk.Label(root, bd=10, relief=GROOVE, font=('times new roman', 15, 'bold'), fg='gold', bg=bg_color)
+                                           # detail entry
 cname_lbl = tk.Label(F1, text='Product Name', font=('times new roman', 18, 'bold'), bg=bg_color, fg='white')
 cname_txt = Entry(F1, width=15, textvariable=c_name, font='arial 15 bold', relief=SUNKEN, bd=7)
 cphone_lbl = tk.Label(F1, text='Customer Name ', font=('times new roman', 18, 'bold'), bg=bg_color, fg='white')
 cphone_txt = Entry(F1, width=15, font='arial 15 bold', textvariable=c_phone, relief=SUNKEN, bd=7)
+                                             # lable2
 F2 = tk.LabelFrame(root, text='Product Details', font=('times new roman', 18, 'bold'), fg='#ffdab9', bg=bg_color)
+                                    # actual detail abt mineral
 itm = tk.Label(F2, text='Mineral Name', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#7eff9e')
 itm_txt = Entry(F2, width=20, textvariable=item, font='arial 15 bold', relief=SUNKEN, bd=7)
 rate = tk.Label(F2, text='Mineral Rate per gram', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#7eff9e')
@@ -157,6 +158,7 @@ rate_txt = Entry(F2, width=20, textvariable=Rate, font='arial 15 bold', relief=S
 n = tk.Label(F2, text='Mineral Quantity (in gram)', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#7eff9e')
 n_txt = Entry(F2, width=20, textvariable=quantity, font='arial 15 bold', relief=SUNKEN, bd=7)
 F3 = Frame(root, relief=GROOVE, bd=10)
+                                       # Bill generation area
 bill_title = tk.Label(F3, text='Bill Generation Area', font='arial 15 bold', bd=7, relief=GROOVE)
 scrol_y = Scrollbar(F3, orient=VERTICAL)
 textarea = Text(F3, yscrollcommand=scrol_y)
