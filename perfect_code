@@ -1,5 +1,3 @@
-# recycling software
-
 from tkinter import *
 from tkVideoPlayer import TkinterVideo
 from tkinter import messagebox
@@ -41,37 +39,38 @@ current_time = now.strftime("%H:%M:%S")
 
 def additm():
     n = Rate.get()
-    m = quantity.get()*n
+    m = quantity.get() * n
     l.append(m)
     if item.get() != '':
-        textarea.insert((10.0+float(len(l)-1)), f"{item.get()}\t\t{quantity.get()}\t\t{ m}\n")
+        textarea.insert((10.0 + float(len(l) - 1)), f"{item.get()}\t\t{quantity.get()}\t\t{m}\n")
     else:
         messagebox.showerror('Error', 'Please enter item')
 
 
 def gbill():
-
     if c_name.get() == "" or c_phone.get() == "":
         messagebox.showerror("Error", "Customer/Product details not entered")
     else:
-        mis = round((10/100)*sum(l))
-        textAreaText = textarea.get(10.0, (10.0+float(len(l))))
+        mis = round((10 / 100) * sum(l))
+        textAreaText = textarea.get(10.0, (10.0 + float(len(l))))
         welcome()
         textarea.insert(END, textAreaText)
-        textarea.insert(END, f"-------------------------------------------------------------------------------------------")
+        textarea.insert(END,
+                        f"-------------------------------------------------------------------------------------------")
         textarea.insert(END, f"\n\t\t        SUB TOTAL :Rs. {sum(l)}")
         textarea.insert(END, f"\n\t          MISCELLANEOUS CHARGES:Rs. {mis}")
-        textarea.insert(END, f"\n-------------------------------------------------------------------------------------------")
-        textarea.insert(END, f"\n\t\t    GRAND TOTAL :Rs. {sum(l)-mis}")
-        textarea.insert(END, f"\n-------------------------------------------------------------------------------------------")
+        textarea.insert(END,
+                        f"\n-------------------------------------------------------------------------------------------")
+        textarea.insert(END, f"\n\t\t    GRAND TOTAL :Rs. {sum(l) - mis}")
+        textarea.insert(END,
+                        f"\n-------------------------------------------------------------------------------------------")
         textarea.insert(END, f"\n\t\t Address for the recycle dump:")
         textarea.insert(END, f"\n\t\t#245 Church Street, Bangalore")
         textarea.insert(END, f"\n\n\t   THANK YOU FOR PROMOTING RECYCLING")
         textarea.insert(END, f"\n\t\t\tGO GREEN!")
-         
+
 
 def clear():
-
     c_name.set('')
     c_phone.set('')
     item.set('')
@@ -87,16 +86,19 @@ def exit():
 
 
 def welcome():
-    textarea.delete(1.0,END)
+    textarea.delete(1.0, END)
     textarea.insert(END, "\t              Exotic Recycler's India Pvt. Ltd. ")
     textarea.insert(END, "\n\t\tMG Road, Bangalore-560001")
-    textarea.insert(END, f"\n-------------------------------------------------------------------------------------------")
+    textarea.insert(END,
+                    f"\n-------------------------------------------------------------------------------------------")
     textarea.insert(END, f"\nBill Number\t\t: {bill_no.get()}")
     textarea.insert(END, f"\nDate\t\t: {date.today()}\t     Time: {current_time}")
     textarea.insert(END, f"\nProduct Name \t\t: {c_name.get()}\t          Customer Name: {c_phone.get()}")
-    textarea.insert(END, f"\n-------------------------------------------------------------------------------------------")
+    textarea.insert(END,
+                    f"\n-------------------------------------------------------------------------------------------")
     textarea.insert(END, "\nMineral Name\t\tMineral Quantity\t\tTotal Price(INR)")
-    textarea.insert(END, f"\n-------------------------------------------------------------------------------------------\n")
+    textarea.insert(END,
+                    f"\n-------------------------------------------------------------------------------------------\n")
     textarea.configure(font='arial 11')
 
 
@@ -123,7 +125,7 @@ t3 = tk.Entry(border2, width=30, show="*", bd=5)
 
 # SecondPage
 
-Label = tk.Label(root, text='''\nDear User,
+Label = tk.Label(root, text='''\nDear User,     
 
     Thank you for choosing e-Recyclers Recycling Software.\t
     INSTRUCTIONS FOR USING THE APP\t
@@ -138,19 +140,19 @@ Label = tk.Label(root, text='''\nDear User,
     Team e-Recyclers \t
     A program by : Nishant V H, Priyanshu Singh and Yakhsita Hansdah\t\n''', font=("Arial Bold", 10))
 
-# slide1
-                                             # lable
+# slide1-----------------------------                          ------------------------------
+# lable
 title = tk.Label(root, pady=2, text="Recycling Software for Smart India Hackathon 2022", bd=12, bg=bg_color,
-                  fg='white', font=('times new roman', 25, 'bold'), relief=GROOVE, justify=CENTER)
+                 fg='white', font=('times new roman', 25, 'bold'), relief=GROOVE, justify=CENTER)
 F1 = tk.Label(root, bd=10, relief=GROOVE, font=('times new roman', 15, 'bold'), fg='gold', bg=bg_color)
-                                           # detail entry
+# detail entry
 cname_lbl = tk.Label(F1, text='Product Name', font=('times new roman', 18, 'bold'), bg=bg_color, fg='white')
 cname_txt = Entry(F1, width=15, textvariable=c_name, font='arial 15 bold', relief=SUNKEN, bd=7)
 cphone_lbl = tk.Label(F1, text='Customer Name ', font=('times new roman', 18, 'bold'), bg=bg_color, fg='white')
 cphone_txt = Entry(F1, width=15, font='arial 15 bold', textvariable=c_phone, relief=SUNKEN, bd=7)
-                                             # lable2
+# lable2
 F2 = tk.LabelFrame(root, text='Product Details', font=('times new roman', 18, 'bold'), fg='#ffdab9', bg=bg_color)
-                                    # actual detail abt mineral
+# actual detail abt mineral
 itm = tk.Label(F2, text='Mineral Name', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#7eff9e')
 itm_txt = Entry(F2, width=20, textvariable=item, font='arial 15 bold', relief=SUNKEN, bd=7)
 rate = tk.Label(F2, text='Mineral Rate per gram', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#7eff9e')
@@ -158,14 +160,13 @@ rate_txt = Entry(F2, width=20, textvariable=Rate, font='arial 15 bold', relief=S
 n = tk.Label(F2, text='Mineral Quantity (in gram)', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#7eff9e')
 n_txt = Entry(F2, width=20, textvariable=quantity, font='arial 15 bold', relief=SUNKEN, bd=7)
 F3 = Frame(root, relief=GROOVE, bd=10)
-                                       # Bill generation area
+# Bill generation area
 bill_title = tk.Label(F3, text='Bill Generation Area', font='arial 15 bold', bd=7, relief=GROOVE)
 scrol_y = Scrollbar(F3, orient=VERTICAL)
 textarea = Text(F3, yscrollcommand=scrol_y)
 
 
 def slide1():
-
     label.place_forget()
     Label.place_forget()
     Button1.place_forget()
@@ -204,7 +205,8 @@ def slide1():
     # Buttons
     btn1 = Button(F2, text='Add Mineral', font='arial 15 bold', command=additm, padx=5, pady=10, bg='#76ff7a', width=15)
     btn1.grid(row=3, column=0, padx=10, pady=30)
-    btn2 = Button(F2, text='Generate Bill', font='arial 15 bold', command=gbill, padx=5, pady=10, bg='#76ff7a', width=15)
+    btn2 = Button(F2, text='Generate Bill', font='arial 15 bold', command=gbill, padx=5, pady=10, bg='#76ff7a',
+                  width=15)
     btn2.grid(row=3, column=1, padx=10, pady=30)
     btn3 = Button(F2, text='Clear', font='arial 15 bold', padx=5, pady=10, command=clear, bg='#76ff7a', width=15)
     btn3.grid(row=4, column=0, padx=10, pady=30)
@@ -213,7 +215,6 @@ def slide1():
 
 
 def vid():
-
     global vid
     vid = TkinterVideo(master=root, scaled=True)
     vid.load("H:\Tallybug\vid_tally.mp4")
@@ -223,7 +224,6 @@ def vid():
 
 
 def verify():
-
     try:
         with open("credential.txt", "r") as f:
             info = f.readlines()
@@ -241,23 +241,31 @@ def verify():
 
 
 def check():
-
-    if t1.get() != "" or t2.get() != "" or t3.get() != "":
-        if t2.get() == t3.get():
-            with open("credential.txt", "a") as f:
-                f.write(t1.get()+","+t2.get()+"\n")
-                messagebox.showinfo("Welcome", "You are registered successfully!!")
-                SecondPage()
-        else:
-            messagebox.showinfo("Error", "Your password didn't get match!!")
+    if t1.get() != "" and t2.get() != "" and t3.get() != "":
+        with open("credential.txt", "r") as f:
+            info = f.readlines()
+            for e in info:
+                u, p = e.split(",")
+                if u.strip() == t1.get():
+                    messagebox.showinfo("Error", "Username Exists!\nEnter a different username.")
+                    register()
+                if u.strip() != t1.get():
+                    if t2.get() == t3.get():
+                        with open("credential.txt", "a") as f:
+                            f.write(t1.get() + "," + t2.get() + "\n")
+                            messagebox.showinfo("Welcome", "You are registered successfully!!")
+                            SecondPage()
+                    if t2.get() != t3.get():
+                        messagebox.showinfo("Error", "Your password didn't get match!!")
     else:
         messagebox.showinfo("Error", "Please fill the complete field!!")
 
-# button variable
-b1 = tk.Button(border2, text="Sign in", font=("Arial", 15), bg="#e6be8a", command=check)
+
+# button variable for Register
+b1 = tk.Button(border2, text="Submit", bg="#e0b0ff", font=("Arial", 15), command=check)
+
 
 def register():
-
     border.pack_forget()
     L1.place_forget()
     T1.place_forget()
@@ -273,7 +281,8 @@ def register():
     t2.place(x=220, y=60)
     l3.place(x=30, y=110)
     t3.place(x=220, y=110)
-    b1.place(x=185, y=153)
+    b1.place(x=270, y=153)
+    b2.place(x=110, y=153)
 
 
 def ThirdPage():
@@ -285,11 +294,20 @@ def ThirdPage():
     Button=tk.Button(root, text="Back", font=("Arial", 15), command=lambda: controller.show_frame(SecondPage))
     Button.place(x=100, y=450)'''
 
-def FirstPage():
 
+def FirstPage():
     Label.place_forget()
     Button1.place_forget()
     Button2.place_forget()
+    border2.pack_forget()
+    l1.place_forget()
+    t1.place_forget()
+    l2.place_forget()
+    t2.place_forget()
+    l3.place_forget()
+    t3.place_forget()
+    b1.place_forget()
+    b2.place_forget()
 
     label.place(x=0, y=0)
     border.pack(fill="both", expand=True, padx=370, pady=240)
@@ -300,18 +318,21 @@ def FirstPage():
 
     global B1
     global B2
-    B1 = tk.Button(border, text="Submit", font=("Arial", 15), command=verify)
+    B1 = tk.Button(border, text="Sign in", font=("Arial", 15), command=verify)
     B1.place(x=260, y=120)
     B2 = tk.Button(border, text="Register", bg="#ff7f50", font=("Arial", 15), command=register)
     B2.place(x=115, y=120)
 
 
-# button variables
+# button variables of Firstpage
 Button1 = tk.Button(root, text="Back", font=("Arial", 15), command=FirstPage)
 Button2 = tk.Button(root, text="Next", font=("Arial", 15), command=slide1)
-        
-def SecondPage():
 
+# button variable of Register--- since FirstPage needs to be defined first.
+b2 = tk.Button(border2, text="Login", font=("Arial", 15), command=FirstPage)
+
+
+def SecondPage():
     border.pack_forget()
     L1.place_forget()
     T1.place_forget()
@@ -331,6 +352,7 @@ def SecondPage():
     Label.place(x=345, y=200)
     Button1.place(x=490, y=480)
     Button2.place(x=730, y=480)
+
 
 FirstPage()
 root.mainloop()
