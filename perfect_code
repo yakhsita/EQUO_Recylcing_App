@@ -55,7 +55,7 @@ def gbill():
         messagebox.showerror("Error", "Customer/Product details not entered")
     else:
         mis = round((10/100)*sum(l))
-        textAreaText = textarea.get(10.0,(10.0+float(len(l))))
+        textAreaText = textarea.get(10.0, (10.0+float(len(l))))
         welcome()
         textarea.insert(END, textAreaText)
         textarea.insert(END, f"-------------------------------------------------------------------------------------------")
@@ -68,7 +68,6 @@ def gbill():
         textarea.insert(END, f"\n\t\t#245 Church Street, Bangalore")
         textarea.insert(END, f"\n\n\t   THANK YOU FOR PROMOTING RECYCLING")
         textarea.insert(END, f"\n\t\t\tGO GREEN!")
-        save_bill()
          
 
 def clear():
@@ -88,7 +87,7 @@ def exit():
 
 
 def welcome():
-    textarea.delete(1.0, END)
+    textarea.delete(1.0,END)
     textarea.insert(END, "\t              Exotic Recycler's India Pvt. Ltd. ")
     textarea.insert(END, "\n\t\tMG Road, Bangalore-560001")
     textarea.insert(END, f"\n-------------------------------------------------------------------------------------------")
@@ -122,43 +121,62 @@ t2 = tk.Entry(border2, width=30, show="*", bd=5)
 l3 = tk.Label(border2, text="Confirm Password:", font=("Arial", 15), bg="ivory")
 t3 = tk.Entry(border2, width=30, show="*", bd=5)
 
+# SecondPage
+
+Label = tk.Label(root, text='''\nDear User,
+
+    Thank you for choosing e-Recyclers Recycling Software.\t
+    INSTRUCTIONS FOR USING THE APP\t
+    1. Enter the name of device that is to be recycled.\t
+     2. Enter the mineral(s) present in your device from among the following minerals\t
+    3. After entering each item, click on ADD MINERAL\t
+     4. Once your are done with entering all the required details, Click on Generate Bill\t
+
+    NOTE : Click on OK to continue.\t
+
+    Thanks & Regards,\t
+    Team e-Recyclers \t
+    A program by : Nishant V H, Priyanshu Singh and Yakhsita Hansdah\t\n''', font=("Arial Bold", 10))
+
 
 def slide1():
-    
-    vid.destroy()
 
-    title = Label(root, pady=2, text="Recycling Software for Smart India Hackathon 2022", bd=12, bg=bg_color,
+    Label.place_forget()
+    Button1.place_forget()
+    Button2.place_forget()
+
+    title = tk.Label(root, pady=2, text="Recycling Software for Smart India Hackathon 2022", bd=12, bg=bg_color,
                   fg='white', font=('times new roman', 25, 'bold'), relief=GROOVE, justify=CENTER)
     title.pack(fill=X)
 
     # Product Frames
-    F1 = LabelFrame(root, bd=10, relief=GROOVE, font=('times new roman', 15, 'bold'), fg='gold', bg=bg_color)
+    F1 = tk.Label(root, bd=10, relief=GROOVE, font=('times new roman', 15, 'bold'), fg='gold', bg=bg_color)
     F1.place(x=0, y=80, relwidth=1)
 
-    cname_lbl = Label(F1, text='Product Name', font=('times new roman', 18, 'bold'), bg=bg_color, fg='white')
+    cname_lbl = tk.Label(F1, text='Product Name', font=('times new roman', 18, 'bold'), bg=bg_color, fg='white')
     cname_lbl.grid(row=0, column=0, padx=20, pady=5)
     cname_txt = Entry(F1, width=15, textvariable=c_name, font='arial 15 bold', relief=SUNKEN, bd=7)
     cname_txt.grid(row=0, column=1, padx=10, pady=5)
 
-    cphone_lbl = Label(F1, text='Customer Name ', font=('times new roman', 18, 'bold'), bg=bg_color, fg='white')
+    cphone_lbl = tk.Label(F1, text='Customer Name ', font=('times new roman', 18, 'bold'), bg=bg_color, fg='white')
     cphone_lbl.grid(row=0, column=2, padx=20, pady=5)
     cphone_txt = Entry(F1, width=15, font='arial 15 bold', textvariable=c_phone, relief=SUNKEN, bd=7)
     cphone_txt.grid(row=0, column=3, padx=10, pady=5)
 
-    F2 = LabelFrame(root, text='Product Details', font=('times new roman', 18, 'bold'), fg='#ffdab9', bg=bg_color)
+    F2 = tk.LabelFrame(root, text='Product Details', font=('times new roman', 18, 'bold'), fg='#ffdab9', bg=bg_color)
     F2.place(x=20, y=180, width=630, height=500)
 
-    itm = Label(F2, text='Mineral Name', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#7eff9e')
+    itm = tk.Label(F2, text='Mineral Name', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#7eff9e')
     itm.grid(row=0, column=0, padx=30, pady=20)
     itm_txt = Entry(F2, width=20, textvariable=item, font='arial 15 bold', relief=SUNKEN, bd=7)
     itm_txt.grid(row=0, column=1, padx=10, pady=20)
 
-    rate = Label(F2, text='Mineral Rate per gram', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#7eff9e')
+    rate = tk.Label(F2, text='Mineral Rate per gram', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#7eff9e')
     rate.grid(row=1, column=0, padx=30, pady=20)
     rate_txt = Entry(F2, width=20, textvariable=Rate, font='arial 15 bold', relief=SUNKEN, bd=7)
     rate_txt.grid(row=1, column=1, padx=10, pady=20)
 
-    n = Label(F2, text='Mineral Quantity (in gram)', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#7eff9e')
+    n = tk.Label(F2, text='Mineral Quantity (in gram)', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#7eff9e')
     n.grid(row=2, column=0, padx=30, pady=20)
     n_txt = Entry(F2, width=20, textvariable=quantity, font='arial 15 bold', relief=SUNKEN, bd=7)
     n_txt.grid(row=2, column=1, padx=10, pady=20)
@@ -167,7 +185,7 @@ def slide1():
     F3 = Frame(root, relief=GROOVE, bd=10)
     F3.place(x=700, y=180, width=500, height=500)
 
-    bill_title = Label(F3, text='Bill Generation Area', font='arial 15 bold', bd=7, relief=GROOVE)
+    bill_title = tk.Label(F3, text='Bill Generation Area', font='arial 15 bold', bd=7, relief=GROOVE)
     bill_title.pack(fill=X)
     scrol_y = Scrollbar(F3, orient=VERTICAL)
     textarea = Text(F3, yscrollcommand=scrol_y)
@@ -205,13 +223,13 @@ def verify():
             for e in info:
                 u, p = e.split(",")
                 if u.strip() == T1.get() and p.strip() == T2.get():
-                    SecondPage()
                     i = 1
-                    break
+                    SecondPage()
             if i == 0:
                 messagebox.showinfo("Error", "Please provide correct username and password!!")
     except:
         messagebox.showinfo("Error", "Please provide correct username and password!!")
+        FirstPage()
 
 
 def check():
@@ -221,11 +239,14 @@ def check():
             with open("credential.txt", "a") as f:
                 f.write(t1.get()+","+t2.get()+"\n")
                 messagebox.showinfo("Welcome", "You are registered successfully!!")
+                SecondPage()
         else:
             messagebox.showinfo("Error", "Your password didn't get match!!")
     else:
         messagebox.showinfo("Error", "Please fill the complete field!!")
 
+# button variable
+b1 = tk.Button(border2, text="Sign in", font=("Arial", 15), bg="#e6be8a", command=check)
 
 def register():
 
@@ -244,13 +265,23 @@ def register():
     t2.place(x=220, y=60)
     l3.place(x=30, y=110)
     t3.place(x=220, y=110)
-
-    global b1
-    b1 = tk.Button(border2, text="Sign in", font=("Arial", 15), bg="#e6be8a", command=check)
     b1.place(x=185, y=153)
 
 
+def ThirdPage():
+    vid()
+
+    '''Button=tk.Button(root, text="Home", font=("Arial", 15), command=lambda: controller.show_frame(FirstPage))
+    Button.place(x=650, y=450)
+
+    Button=tk.Button(root, text="Back", font=("Arial", 15), command=lambda: controller.show_frame(SecondPage))
+    Button.place(x=100, y=450)'''
+
 def FirstPage():
+
+    Label.place_forget()
+    Button1.place_forget()
+    Button2.place_forget()
 
     label.place(x=0, y=0)
     border.pack(fill="both", expand=True, padx=370, pady=240)
@@ -267,6 +298,9 @@ def FirstPage():
     B2.place(x=115, y=120)
 
 
+# button variables
+Button1 = tk.Button(root, text="Back", font=("Arial", 15), command=FirstPage)
+Button2 = tk.Button(root, text="Next", font=("Arial", 15), command=slide1)
         
 def SecondPage():
 
@@ -278,45 +312,17 @@ def SecondPage():
     l1.place_forget()
     t1.place_forget()
     B1.place_forget()
+    border2.pack_forget()
     l2.place_forget()
     t2.place_forget()
     l3.place_forget()
     t3.place_forget()
     b1.place_forget()
     B2.place_forget()
-    Label = tk.Label(root, text='''Dear User,
 
-        Thank you for choosing e-Recyclers Recycling Software.
-        INSTRUCTIONS FOR USING THE APP
-        1. Enter the name of device that is to be recycled.
-        2. Enter the mineral(s) present in your device from among the following minerals
-        3. After entering each item, click on ADD MINERAL
-        4. Once your are done with entering all the required details, Click on Generate Bill
+    Label.place(x=345, y=200)
+    Button1.place(x=490, y=480)
+    Button2.place(x=730, y=480)
 
-        NOTE : Click on OK to continue.
-
-    Thanks & Regards,
-    Team e-Recyclers 
-    A program by : Nishant V H, Priyanshu Singh and Yakhsita Hansdah''', font=("Arial Bold", 10))
-    Label.place(x=100, y=150)
-        
-    Button1 = tk.Button(root, text="Next", font=("Arial", 15), command=ThirdPage)
-    Button1.place(x=650, y=450)
-        
-    Button2 = tk.Button(root, text="Back", font=("Arial", 15), command=FirstPage)
-    Button2.place(x=100, y=450)
-
-
-def ThirdPage():
-
-    vid()
-        
-    '''Button=tk.Button(root, text="Home", font=("Arial", 15), command=lambda: controller.show_frame(FirstPage))
-    Button.place(x=650, y=450)
-        
-    Button=tk.Button(root, text="Back", font=("Arial", 15), command=lambda: controller.show_frame(SecondPage))
-    Button.place(x=100, y=450)'''
-
-            
 FirstPage()
 root.mainloop()
