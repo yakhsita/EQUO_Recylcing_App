@@ -1,4 +1,4 @@
-# recycling app
+# recycling software
 
 from tkinter import *
 from tkVideoPlayer import TkinterVideo
@@ -138,57 +138,63 @@ Label = tk.Label(root, text='''\nDear User,
     Team e-Recyclers \t
     A program by : Nishant V H, Priyanshu Singh and Yakhsita Hansdah\t\n''', font=("Arial Bold", 10))
 
+# slide1
+
+# slide1
+
+title = tk.Label(root, pady=2, text="Recycling Software for Smart India Hackathon 2022", bd=12, bg=bg_color,
+                  fg='white', font=('times new roman', 25, 'bold'), relief=GROOVE, justify=CENTER)
+F1 = tk.Label(root, bd=10, relief=GROOVE, font=('times new roman', 15, 'bold'), fg='gold', bg=bg_color)
+cname_lbl = tk.Label(F1, text='Product Name', font=('times new roman', 18, 'bold'), bg=bg_color, fg='white')
+cname_txt = Entry(F1, width=15, textvariable=c_name, font='arial 15 bold', relief=SUNKEN, bd=7)
+cphone_lbl = tk.Label(F1, text='Customer Name ', font=('times new roman', 18, 'bold'), bg=bg_color, fg='white')
+cphone_txt = Entry(F1, width=15, font='arial 15 bold', textvariable=c_phone, relief=SUNKEN, bd=7)
+F2 = tk.LabelFrame(root, text='Product Details', font=('times new roman', 18, 'bold'), fg='#ffdab9', bg=bg_color)
+itm = tk.Label(F2, text='Mineral Name', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#7eff9e')
+itm_txt = Entry(F2, width=20, textvariable=item, font='arial 15 bold', relief=SUNKEN, bd=7)
+rate = tk.Label(F2, text='Mineral Rate per gram', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#7eff9e')
+rate_txt = Entry(F2, width=20, textvariable=Rate, font='arial 15 bold', relief=SUNKEN, bd=7)
+n = tk.Label(F2, text='Mineral Quantity (in gram)', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#7eff9e')
+n_txt = Entry(F2, width=20, textvariable=quantity, font='arial 15 bold', relief=SUNKEN, bd=7)
+F3 = Frame(root, relief=GROOVE, bd=10)
+bill_title = tk.Label(F3, text='Bill Generation Area', font='arial 15 bold', bd=7, relief=GROOVE)
+scrol_y = Scrollbar(F3, orient=VERTICAL)
+textarea = Text(F3, yscrollcommand=scrol_y)
+
 
 def slide1():
 
+    label.place_forget()
     Label.place_forget()
     Button1.place_forget()
     Button2.place_forget()
 
-    title = tk.Label(root, pady=2, text="Recycling Software for Smart India Hackathon 2022", bd=12, bg=bg_color,
-                  fg='white', font=('times new roman', 25, 'bold'), relief=GROOVE, justify=CENTER)
     title.pack(fill=X)
 
     # Product Frames
-    F1 = tk.Label(root, bd=10, relief=GROOVE, font=('times new roman', 15, 'bold'), fg='gold', bg=bg_color)
     F1.place(x=0, y=80, relwidth=1)
 
-    cname_lbl = tk.Label(F1, text='Product Name', font=('times new roman', 18, 'bold'), bg=bg_color, fg='white')
     cname_lbl.grid(row=0, column=0, padx=20, pady=5)
-    cname_txt = Entry(F1, width=15, textvariable=c_name, font='arial 15 bold', relief=SUNKEN, bd=7)
     cname_txt.grid(row=0, column=1, padx=10, pady=5)
 
-    cphone_lbl = tk.Label(F1, text='Customer Name ', font=('times new roman', 18, 'bold'), bg=bg_color, fg='white')
     cphone_lbl.grid(row=0, column=2, padx=20, pady=5)
-    cphone_txt = Entry(F1, width=15, font='arial 15 bold', textvariable=c_phone, relief=SUNKEN, bd=7)
     cphone_txt.grid(row=0, column=3, padx=10, pady=5)
 
-    F2 = tk.LabelFrame(root, text='Product Details', font=('times new roman', 18, 'bold'), fg='#ffdab9', bg=bg_color)
     F2.place(x=20, y=180, width=630, height=500)
 
-    itm = tk.Label(F2, text='Mineral Name', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#7eff9e')
     itm.grid(row=0, column=0, padx=30, pady=20)
-    itm_txt = Entry(F2, width=20, textvariable=item, font='arial 15 bold', relief=SUNKEN, bd=7)
     itm_txt.grid(row=0, column=1, padx=10, pady=20)
 
-    rate = tk.Label(F2, text='Mineral Rate per gram', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#7eff9e')
     rate.grid(row=1, column=0, padx=30, pady=20)
-    rate_txt = Entry(F2, width=20, textvariable=Rate, font='arial 15 bold', relief=SUNKEN, bd=7)
     rate_txt.grid(row=1, column=1, padx=10, pady=20)
 
-    n = tk.Label(F2, text='Mineral Quantity (in gram)', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#7eff9e')
     n.grid(row=2, column=0, padx=30, pady=20)
-    n_txt = Entry(F2, width=20, textvariable=quantity, font='arial 15 bold', relief=SUNKEN, bd=7)
     n_txt.grid(row=2, column=1, padx=10, pady=20)
 
     # Bill area
-    F3 = Frame(root, relief=GROOVE, bd=10)
     F3.place(x=700, y=180, width=500, height=500)
 
-    bill_title = tk.Label(F3, text='Bill Generation Area', font='arial 15 bold', bd=7, relief=GROOVE)
     bill_title.pack(fill=X)
-    scrol_y = Scrollbar(F3, orient=VERTICAL)
-    textarea = Text(F3, yscrollcommand=scrol_y)
     scrol_y.pack(side=RIGHT, fill=Y)
     scrol_y.config(command=textarea.yview)
     textarea.pack()
