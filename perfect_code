@@ -244,19 +244,28 @@ def check():
     if t1.get() != "" and t2.get() != "" and t3.get() != "":
         with open("credential.txt", "r") as f:
             info = f.readlines()
-            for e in info:
-                u, p = e.split(",")
-                if u.strip() == t1.get():
-                    messagebox.showinfo("Error", "Username Exists!\nEnter a different username.")
-                    register()
-                if u.strip() != t1.get():
-                    if t2.get() == t3.get():
-                        with open("credential.txt", "a") as f:
-                            f.write(t1.get() + "," + t2.get() + "\n")
-                            messagebox.showinfo("Welcome", "You are registered successfully!!")
-                            SecondPage()
-                    if t2.get() != t3.get():
-                        messagebox.showinfo("Error", "Your password didn't get match!!")
+            if info == ["\n"]:
+                if t2.get() == t3.get():
+                    with open("credential.txt", "a") as f:
+                        f.write(t1.get() + "," + t2.get() + "\n")
+                        messagebox.showinfo("Welcome", "You are registered successfully!!")
+                        SecondPage()
+                if t2.get() != t3.get():
+                    messagebox.showinfo("Error", "Your password didn't get match!!")
+            else:
+                for e in info:
+                    u, p = e.split(",")
+                    if u.strip() == t1.get():
+                        messagebox.showinfo("Error", "Username Exists!\nEnter a different username.")
+                        register()
+                    if u.strip() != t1.get():
+                        if t2.get() == t3.get():
+                            with open("credential.txt", "a") as f:
+                                f.write(t1.get() + "," + t2.get() + "\n")
+                                messagebox.showinfo("Welcome", "You are registered successfully!!")
+                                SecondPage()
+                        if t2.get() != t3.get():
+                            messagebox.showinfo("Error", "Your password didn't get match!!")
     else:
         messagebox.showinfo("Error", "Please fill the complete field!!")
 
