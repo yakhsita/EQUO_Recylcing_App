@@ -1,3 +1,5 @@
+# Recycling software
+
 from tkinter import *
 from tkVideoPlayer import TkinterVideo
 from tkinter import messagebox
@@ -41,8 +43,8 @@ def additm():
     n = Rate.get()
     m = quantity.get() * n
     l.append(m)
-    if item.get() != '':
-        textarea.insert((10.0 + float(len(l) - 1)), f"{item.get()}\t\t{quantity.get()}\t\t{m}\n")
+    if clicked.get() != '':
+        textarea.insert((10.0 + float(len(l) - 1)), f"{clicked.get()}\t\t{quantity.get()}\t\t{m}\n")
     else:
         messagebox.showerror('Error', 'Please enter item')
 
@@ -73,7 +75,7 @@ def gbill():
 def clear():
     c_name.set('')
     c_phone.set('')
-    item.set('')
+    clicked.set('')
     Rate.set(0)
     quantity.set(0)
     welcome()
@@ -154,7 +156,76 @@ cphone_txt = Entry(F1, width=15, font='arial 15 bold', textvariable=c_phone, rel
 F2 = tk.LabelFrame(root, text='Product Details', font=('times new roman', 18, 'bold'), fg='#ffdab9', bg=bg_color)
 # actual detail abt mineral
 itm = tk.Label(F2, text='Mineral Name', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#7eff9e')
-itm_txt = Entry(F2, width=20, textvariable=item, font='arial 15 bold', relief=SUNKEN, bd=7)
+
+# for dropdown
+options = [
+    "Aluminum",
+    "Antimony",
+    "Barite",
+    "Bauxite",
+    "Bentonite",
+    "Beryllium",
+    "Boron",
+    "Cadmium",
+    "Chromite",
+    "Chromium",
+    "Cobalt",
+    "Columbium",
+    "Copper",
+    "Europium",
+    "Diamond",
+    "Diatomite",
+    "Feldspar",
+    "Gallium",
+    "Germanium",
+    "Gold",
+    "Graphite",
+    "Halite",
+    "Indium",
+    "Iron",
+    "Kaolin",
+    "Kyanite",
+    "Lanthanides",
+    "Lead",
+    "Lime",
+    "Limestone",
+    "Lithium",
+    "Manganese",
+    "Mercury",
+    "Mica",
+    "Molybdenum",
+    "Nickel",
+    "Perlite",
+    "Platinum",
+    "Quartz",
+    "Rhenium",
+    "Selenium",
+    "Silica",
+    "Sillimanite",
+    "Silver",
+    "Strontium",
+    "Talc",
+    "Tantalum",
+    "Tellurium",
+    "Terbium",
+    "Titanium",
+    "Tin",
+    "Trona",
+    "Tungsten",
+    "Vanadium",
+    "Yttrium",
+    "Zeolite",
+    "Zinc",
+    "Zirconium"
+]
+clicked = StringVar()
+clicked.set("Choose Mineral") # initial menu text
+drop = OptionMenu(F2, clicked, *options)
+# clicked.get() is the item choosen
+# itm_txt = tk.Label(F2, width=20, textvariable=item, font='arial 15 bold', relief=SUNKEN, bd=7)
+drop.place(x=360, y=22)
+drop.config(width=32)
+
 rate = tk.Label(F2, text='Mineral Rate per gram', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#7eff9e')
 rate_txt = Entry(F2, width=20, textvariable=Rate, font='arial 15 bold', relief=SUNKEN, bd=7)
 n = tk.Label(F2, text='Mineral Quantity (in gram)', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#7eff9e')
@@ -186,7 +257,7 @@ def slide1():
     F2.place(x=20, y=180, width=630, height=500)
 
     itm.grid(row=0, column=0, padx=30, pady=20)
-    itm_txt.grid(row=0, column=1, padx=10, pady=20)
+    #itm_txt.place(x=360, y=22)
 
     rate.grid(row=1, column=0, padx=30, pady=20)
     rate_txt.grid(row=1, column=1, padx=10, pady=20)
@@ -214,13 +285,13 @@ def slide1():
     btn4.grid(row=4, column=1, padx=10, pady=30)
 
 
-def vid():
+"""def vid():
     global vid
     vid = TkinterVideo(master=root, scaled=True)
     vid.load("H:\Tallybug\vid_tally.mp4")
     vid.pack(expand=True, fill="both")
     vid.play()
-    root.after(6000, slide1)
+    root.after(6000, slide1)"""
 
 
 def verify():
@@ -294,15 +365,15 @@ def register():
     b2.place(x=110, y=153)
 
 
-def ThirdPage():
+"""def ThirdPage():
     vid()
 
-    '''Button=tk.Button(root, text="Home", font=("Arial", 15), command=lambda: controller.show_frame(FirstPage))
+    Button=tk.Button(root, text="Home", font=("Arial", 15), command=lambda: controller.show_frame(FirstPage))
     Button.place(x=650, y=450)
 
     Button=tk.Button(root, text="Back", font=("Arial", 15), command=lambda: controller.show_frame(SecondPage))
-    Button.place(x=100, y=450)'''
-
+    Button.place(x=100, y=450)
+"""
 
 def FirstPage():
     Label.place_forget()
