@@ -39,6 +39,21 @@ current_time = now.strftime("%H:%M:%S")
 
 # Functions
 
+def remvcha():
+    text = "Choose Mineral"
+    if clicked.get() == text:
+        messagebox.showinfo('Error', 'Please select mineral')
+    else:
+        additm()
+
+def remvchg():
+    text = "Choose Mineral"
+    if clicked.get() == text:
+        messagebox.showinfo('Error', 'Please select mineral')
+    else:
+        gbill()
+
+
 def additm():
     n = Rate.get()
     m = quantity.get() * n
@@ -46,7 +61,7 @@ def additm():
     if clicked.get() != '':
         textarea.insert((10.0 + float(len(l) - 1)), f"{clicked.get()}\t\t{quantity.get()}\t\t{m}\n")
     else:
-        messagebox.showerror('Error', 'Please enter item')
+        messagebox.showinfo('Error', 'Please enter value')
 
 
 def gbill():
@@ -274,9 +289,9 @@ def slide1():
     textarea.pack()
     welcome()
     # Buttons
-    btn1 = Button(F2, text='Add Mineral', font='arial 15 bold', command=additm, padx=5, pady=10, bg='#76ff7a', width=15)
+    btn1 = Button(F2, text='Add Mineral', font='arial 15 bold', command=remvcha, padx=5, pady=10, bg='#76ff7a', width=15)
     btn1.grid(row=3, column=0, padx=10, pady=30)
-    btn2 = Button(F2, text='Generate Bill', font='arial 15 bold', command=gbill, padx=5, pady=10, bg='#76ff7a',
+    btn2 = Button(F2, text='Generate Bill', font='arial 15 bold', command=remvchg, padx=5, pady=10, bg='#76ff7a',
                   width=15)
     btn2.grid(row=3, column=1, padx=10, pady=30)
     btn3 = Button(F2, text='Clear', font='arial 15 bold', padx=5, pady=10, command=clear, bg='#76ff7a', width=15)
