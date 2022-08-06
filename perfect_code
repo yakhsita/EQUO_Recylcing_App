@@ -39,6 +39,11 @@ current_time = now.strftime("%H:%M:%S")
 
 # Functions
 
+def show():
+    t = clicked.get()
+    labels.config(text=optionss[t], font=('times new roman', 18, 'bold'))
+
+
 def remvcha():
     text = "Choose Mineral"
     if clicked.get() == text:
@@ -55,13 +60,17 @@ def remvchg():
 
 
 def additm():
-    n = Rate.get()
-    m = quantity.get() * n
-    l.append(m)
-    if clicked.get() != '':
-        textarea.insert((10.0 + float(len(l) - 1)), f"{clicked.get()}\t\t{quantity.get()}\t\t{m}\n")
-    else:
-        messagebox.showinfo('Error', 'Please enter value')
+    t = clicked.get()
+    if t!= 'Choose Mineral':
+        show()
+        tt = optionss[t]
+        # n = Rate.get()
+        m = quantity.get() * tt
+        l.append(m)
+        if clicked.get() != '':
+            textarea.insert((10.0 + float(len(l) - 1)), f"{clicked.get()}\t\t{quantity.get()}\t\t{m}\n")
+        else:
+            messagebox.showinfo('Error', 'Please enter value')
 
 
 def gbill():
@@ -91,7 +100,7 @@ def clear():
     c_name.set('')
     c_phone.set('')
     clicked.set('')
-    Rate.set(0)
+    # Rate.set(0)
     quantity.set(0)
     welcome()
 
@@ -233,16 +242,79 @@ options = [
     "Zinc",
     "Zirconium"
 ]
+
+optionss = {
+    "Aluminum": 23,
+    "Antimony": 24,
+    "Barite": 26,
+    "Bauxite": 30,
+    "Bentonite": 20,
+    "Beryllium": 21,
+    "Boron": 22,
+    "Cadmium": 29,
+    "Chromite": 28,
+    "Chromium": 28,
+    "Cobalt": 30,
+    "Columbium": 27,
+    "Copper": 20,
+    "Europium": 30,
+    "Diamond": 50,
+    "Diatomite": 44,
+    "Feldspar": 29,
+    "Gallium": 24,
+    "Germanium": 26,
+    "Gold": 35,
+    "Graphite": 22,
+    "Halite": 25,
+    "Indium": 24,
+    "Iron": 23,
+    "Kaolin": 28,
+    "Kyanite": 30,
+    "Lanthanides": 22,
+    "Lead": 23,
+    "Lime": 25,
+    "Limestone": 27,
+    "Lithium": 28,
+    "Manganese": 27,
+    "Mercury": 30,
+    "Mica": 30,
+    "Molybdenum": 27,
+    "Nickel": 29,
+    "Perlite": 26,
+    "Platinum": 39,
+    "Quartz": 27,
+    "Rhenium": 31,
+    "Selenium": 23,
+    "Silica": 30,
+    "Sillimanite": 28,
+    "Silver": 33,
+    "Strontium": 30,
+    "Talc": 24,
+    "Tantalum": 25,
+    "Tellurium": 22,
+    "Terbium": 25,
+    "Titanium": 36,
+    "Tin": 27,
+    "Trona": 26,
+    "Tungsten": 30,
+    "Vanadium": 27,
+    "Yttrium": 30,
+    "Zeolite": 29,
+    "Zinc": 25,
+    "Zirconium": 30
+}
+
+labels = tk.Label(root, text=" ", font=('times new roman', 17, 'bold'), bg="white", width=16)
+
 clicked = StringVar()
 clicked.set("Choose Mineral") # initial menu text
 drop = OptionMenu(F2, clicked, *options)
 # clicked.get() is the item choosen
 # itm_txt = tk.Label(F2, width=20, textvariable=item, font='arial 15 bold', relief=SUNKEN, bd=7)
-drop.place(x=360, y=22)
 drop.config(width=32)
 
 rate = tk.Label(F2, text='Mineral Rate per gram', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#7eff9e')
-rate_txt = Entry(F2, width=20, textvariable=Rate, font='arial 15 bold', relief=SUNKEN, bd=7)
+rate_txt = Entry(F2, width=20, font='arial 15 bold', relief=SUNKEN, bd=7)
 n = tk.Label(F2, text='Mineral Quantity (in gram)', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#7eff9e')
 n_txt = Entry(F2, width=20, textvariable=quantity, font='arial 15 bold', relief=SUNKEN, bd=7)
 F3 = Frame(root, relief=GROOVE, bd=10)
@@ -273,9 +345,11 @@ def slide1():
 
     itm.grid(row=0, column=0, padx=30, pady=20)
     #itm_txt.place(x=360, y=22)
+    drop.place(x=360, y=22)
 
     rate.grid(row=1, column=0, padx=30, pady=20)
     rate_txt.grid(row=1, column=1, padx=10, pady=20)
+    labels.place(x=388, y=304)
 
     n.grid(row=2, column=0, padx=30, pady=20)
     n_txt.grid(row=2, column=1, padx=10, pady=20)
