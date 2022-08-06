@@ -61,16 +61,20 @@ def remvchg():
 
 def additm():
     t = clicked.get()
-    if t!= 'Choose Mineral':
-        show()
-        tt = optionss[t]
-        # n = Rate.get()
-        m = quantity.get() * tt
-        l.append(m)
-        if clicked.get() != '':
-            textarea.insert((10.0 + float(len(l) - 1)), f"{clicked.get()}\t\t{quantity.get()}\t\t{m}\n")
+    q = quantity.get()
+    if t != 'Choose Mineral':
+        if q != '':
+            show()
+            tt = optionss[t]
+            # n = Rate.get()
+            m = quantity.get() * tt
+            l.append(m)
+            if clicked.get() != '':
+                textarea.insert((10.0 + float(len(l) - 1)), f"{clicked.get()}\t\t{quantity.get()}\t\t{m}\n")
+            else:
+                messagebox.showinfo('Error', 'Please Select Mineral!')
         else:
-            messagebox.showinfo('Error', 'Please enter value')
+            messagebox.showinfo('Error', 'Please enter quantity!')
 
 
 def gbill():
@@ -99,8 +103,9 @@ def gbill():
 def clear():
     c_name.set('')
     c_phone.set('')
-    clicked.set('')
+    clicked.set('Choose Mineral')
     # Rate.set(0)
+    labels.config(text='', font=('times new roman', 18, 'bold'))
     quantity.set(0)
     welcome()
 
@@ -156,8 +161,8 @@ Label = tk.Label(root, text='''\nDear User,
     Thank you for choosing e-Recyclers Recycling Software.\t
     INSTRUCTIONS FOR USING THE APP\t
     1. Enter the name of device that is to be recycled.\t
-     2. Enter the mineral(s) present in your device from among the following minerals\t
-    3. After entering each item, click on ADD MINERAL\t
+     2. Select the mineral(s) present in your device from among the following minerals\t
+    3. After entering details, click on ADD MINERAL\t
      4. Once your are done with entering all the required details, Click on Generate Bill\t
 
     NOTE : Click on OK to continue.\t
