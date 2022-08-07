@@ -18,7 +18,7 @@ root = Tk()
 root.title("Recycling Application - Hackathon 2022")
 bg_color = 'Black'
 root.geometry("1215x700")
-root.resizable(None, None)
+root.resizable(0, 0)
 
 # Variable Used
 c_name = StringVar()
