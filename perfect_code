@@ -24,8 +24,7 @@ root.resizable(None, None)
 c_name = StringVar()
 c_phone = StringVar()
 item = StringVar()
-Rate = IntVar()
-quantity = IntVar()
+# Rate = IntVar()
 bill_no = StringVar()
 x = random.randint(1000, 9999)
 bill_no.set(str(x))
@@ -62,21 +61,45 @@ def remvchg():
 
 
 def additm():
-    t = clicked.get()
-    q = quantity.get()
-    if t != 'Choose Mineral':
-        if q != '':
-            show()
-            tt = optionss[t]
-            # n = Rate.get()
-            m = quantity.get() * tt
-            l.append(m)
-            if clicked.get() != '':
-                textarea.insert((10.0 + float(len(l) - 1)), f"{clicked.get()}\t\t{quantity.get()}\t\t{m}\n")
+    if type(n_txt.get()) == str:
+        try:
+            qq = int(n_txt.get())
+            if type(int(qq)) != int:
+                messagebox.showinfo('Error', 'Please enter quantity!\n(Numeric Value)')
             else:
-                messagebox.showinfo('Error', 'Please Select Mineral!')
-        else:
-            messagebox.showinfo('Error', 'Please enter quantity!')
+                t = clicked.get()
+                qq = int(n_txt.get())
+                if t != 'Choose Mineral':
+                    if qq != '':
+                        show()
+                        tt = optionss[t]
+                        # n = Rate.get()
+                        m = qq * tt
+                        l.append(m)
+                        if clicked.get() != '':
+                            textarea.insert((10.0 + float(len(l) - 1)), f"{clicked.get()}\t\t{n_txt.get()}\t\t{m}\n")
+                        else:
+                            messagebox.showinfo('Error', 'Please Select Mineral!')
+                    else:
+                        messagebox.showinfo('Error', 'Please enter quantity!')
+        except:
+            messagebox.showinfo('Error', 'Please enter quantity!\n(Numeric Value)')
+    else:
+        t = clicked.get()
+        q = n_txt.get()
+        if t != 'Choose Mineral':
+            if q != '':
+                show()
+                tt = optionss[t]
+                # n = Rate.get()
+                m = n_txt.get() * tt
+                l.append(m)
+                if clicked.get() != '':
+                    textarea.insert((10.0 + float(len(l) - 1)), f"{clicked.get()}\t\t{n_txt.get()}\t\t{m}\n")
+                else:
+                    messagebox.showinfo('Error', 'Please Select Mineral!')
+            else:
+                messagebox.showinfo('Error', 'Please enter quantity!')
 
 
 def gbill():
@@ -107,8 +130,7 @@ def clear():
     c_phone.set('')
     clicked.set('Choose Mineral')
     # Rate.set(0)
-    labels.config(text='', font=('times new roman', 18, 'bold'))
-    quantity.set(0)
+    labels.config(text='-', font=('times new roman', 18, 'bold'))
     welcome()
 
 
@@ -172,12 +194,12 @@ Label = tk.Label(root, text='''\nDear User,
     3. After entering details, click on ADD MINERAL\t
      4. Once your are done with entering all the required details, Click on Generate Bill\t
 
-    NOTE : Click on OK to continue.\t
+    NOTE : Click on NEXT to continue.\t
 
     Thanks & Regards,\t
     Team e-Recyclers \t
     A program by : Nishant V H, Priyanshu Singh and Yakhsita Hansdah\t\n\n''', font=("Arial Bold", 10),
-                 fg='white', bg='black', bd=10)
+                 bg='ivory', fg='black', bd=10)
 
 # slide1-----------------------------                          ------------------------------
 # lable
@@ -317,7 +339,7 @@ optionss = {
     "Zirconium": 30
 }
 
-labels = tk.Label(root, text=" ", font=('times new roman', 17, 'bold'), bg="white", width=16)
+labels = tk.Label(root, text="-", font=('times new roman', 17, 'bold'), bg="white", width=16)
 
 clicked = StringVar()
 clicked.set("Choose Mineral") # initial menu text
@@ -329,7 +351,7 @@ drop.config(width=32)
 rate = tk.Label(F2, text='Mineral Rate per gram', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#dda0dd')
 rate_txt = Entry(F2, width=20, font='arial 15 bold', relief=SUNKEN, bd=7)
 n = tk.Label(F2, text='Mineral Quantity (in gram)', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#dda0dd')
-n_txt = Entry(F2, width=20, textvariable=quantity, font='arial 15 bold', relief=SUNKEN, bd=7)
+n_txt = Entry(F2, width=20, font='arial 15 bold', relief=SUNKEN, bd=7)
 F3 = Frame(root, relief=GROOVE, bd=10)
 # Bill generation area
 bill_title = tk.Label(F3, text='Bill Generation Area', font='arial 15 bold', bd=7, relief=GROOVE)
@@ -508,9 +530,9 @@ def FirstPage():
     B2.place(x=115, y=120)
 
 
-Button1 = tk.Button(root, text="Back", font=("Arial", 15), command=FirstPage, fg='white', bg='black')
+Button1 = tk.Button(root, text="Back", font=("Arial", 15), command=FirstPage, bg='ivory', fg='black')
 # button variables of Firstpage
-Button2 = tk.Button(root, text="Next", font=("Arial", 15), command=slide1, fg='white', bg='black')
+Button2 = tk.Button(root, text="Next", font=("Arial", 15), command=slide1, bg='ivory', fg='black')
 
 b2 = tk.Button(border2, text="Login", font=("Arial", 15), command=FirstPage)
 # button variable of Register--- since FirstPage needs to be defined first.
@@ -533,9 +555,9 @@ def SecondPage():
     b1.place_forget()
     B2.place_forget()
 
-    Label.place(x=343, y=180)
-    Button1.place(x=490, y=480)
-    Button2.place(x=730, y=480)
+    Label.place(x=335, y=180)
+    Button1.place(x=490, y=495)
+    Button2.place(x=730, y=495)
 
 
 logo_pic()
