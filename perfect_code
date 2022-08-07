@@ -555,7 +555,7 @@ def SecondPage():
     b1.place_forget()
     B2.place_forget()
 
-    Label.place(x=335, y=180)
+    Label.place(x=330, y=180)
     Button1.place(x=490, y=495)
     Button2.place(x=730, y=495)
 
