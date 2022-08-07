@@ -7,6 +7,8 @@ import tkinter as tk
 # from PIL import Image, ImageTk
 # import cv2
 # import webbrowser  # pip install pillow
+from html.parser import HTMLParser
+import time
 import random
 from datetime import date
 from datetime import datetime
@@ -16,7 +18,7 @@ root = Tk()
 root.title("Recycling Application - Hackathon 2022")
 bg_color = 'Black'
 root.geometry("1215x700")
-root.resizable(0, 0)
+root.resizable(None, None)
 
 # Variable Used
 c_name = StringVar()
@@ -135,23 +137,28 @@ def welcome():
 
 ##------------------------------------------- Variables to be placed ------------------------------------------------##
 
-# FirstPage
-photo = PhotoImage(file="H:\\Tallybug\\user&pass_pic.png")
+# logo_pic
+photo = PhotoImage(file="H:\\Equo\\user&pass_pic.png") # bg_pic
 label = tk.Label(image=photo)
 label.img = photo
-border = tk.LabelFrame(root, text='Login', bg='ivory', bd=10, font=("Arial", 20))
+lphoto = PhotoImage(file="H:\\Equo\\ntg.png") # logoooo
+llabel = tk.Label(image=lphoto, bd=0)
+llabel.img = lphoto
+
+# FirstPage
+border = tk.LabelFrame(root, text='Login', bg='ivory', bd=1, font=("Arial", 20))
 L1 = tk.Label(border, text="Username", font=("Arial Bold", 15), bg='ivory')
 T1 = tk.Entry(border, width=30, bd=5)
 L2 = tk.Label(border, text="Password", font=("Arial Bold", 15), bg='ivory')
 T2 = tk.Entry(border, width=30, show='*', bd=5)
 
 # register
-border2 = tk.LabelFrame(root, text='Register', bg='ivory', bd=10, font=("Arial", 20))
-l1 = tk.Label(border2, text="Username:", font=("Arial", 15), bg="ivory")
+border2 = tk.LabelFrame(root, text='Register', bg='ivory', bd=1, font=("Arial", 20))
+l1 = tk.Label(border2, text="Username", font=("Arial Bold", 15), bg="ivory")
 t1 = tk.Entry(border2, width=30, bd=5)
-l2 = tk.Label(border2, text="Password:", font=("Arial", 15), bg="ivory")
+l2 = tk.Label(border2, text="Password", font=("Arial Bold", 15), bg="ivory")
 t2 = tk.Entry(border2, width=30, show="*", bd=5)
-l3 = tk.Label(border2, text="Confirm Password:", font=("Arial", 15), bg="ivory")
+l3 = tk.Label(border2, text="Confirm Password   ", font=("Arial Bold", 15), bg="ivory")
 t3 = tk.Entry(border2, width=30, show="*", bd=5)
 
 # SecondPage
@@ -169,7 +176,8 @@ Label = tk.Label(root, text='''\nDear User,
 
     Thanks & Regards,\t
     Team e-Recyclers \t
-    A program by : Nishant V H, Priyanshu Singh and Yakhsita Hansdah\t\n''', font=("Arial Bold", 10))
+    A program by : Nishant V H, Priyanshu Singh and Yakhsita Hansdah\t\n\n''', font=("Arial Bold", 10),
+                 fg='white', bg='black', bd=10)
 
 # slide1-----------------------------                          ------------------------------
 # lable
@@ -182,9 +190,9 @@ cname_txt = Entry(F1, width=15, textvariable=c_name, font='arial 15 bold', relie
 cphone_lbl = tk.Label(F1, text='Customer Name ', font=('times new roman', 18, 'bold'), bg=bg_color, fg='white')
 cphone_txt = Entry(F1, width=15, font='arial 15 bold', textvariable=c_phone, relief=SUNKEN, bd=7)
 # lable2
-F2 = tk.LabelFrame(root, text='Product Details', font=('times new roman', 18, 'bold'), fg='#ffdab9', bg=bg_color)
+F2 = tk.LabelFrame(root, text='Product Details', font=('times new roman', 18, 'bold'), fg='#ffe4e1', bg=bg_color)
 # actual detail abt mineral
-itm = tk.Label(F2, text='Mineral Name', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#7eff9e')
+itm = tk.Label(F2, text='Mineral Name', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#dda0dd')
 
 # for dropdown
 options = [
@@ -318,9 +326,9 @@ drop = OptionMenu(F2, clicked, *options)
 # itm_txt = tk.Label(F2, width=20, textvariable=item, font='arial 15 bold', relief=SUNKEN, bd=7)
 drop.config(width=32)
 
-rate = tk.Label(F2, text='Mineral Rate per gram', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#7eff9e')
+rate = tk.Label(F2, text='Mineral Rate per gram', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#dda0dd')
 rate_txt = Entry(F2, width=20, font='arial 15 bold', relief=SUNKEN, bd=7)
-n = tk.Label(F2, text='Mineral Quantity (in gram)', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#7eff9e')
+n = tk.Label(F2, text='Mineral Quantity (in gram)', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#dda0dd')
 n_txt = Entry(F2, width=20, textvariable=quantity, font='arial 15 bold', relief=SUNKEN, bd=7)
 F3 = Frame(root, relief=GROOVE, bd=10)
 # Bill generation area
@@ -330,6 +338,7 @@ textarea = Text(F3, yscrollcommand=scrol_y)
 
 
 def slide1():
+    root['bg'] = 'ivory'
     label.place_forget()
     Label.place_forget()
     Button1.place_forget()
@@ -368,24 +377,17 @@ def slide1():
     textarea.pack()
     welcome()
     # Buttons
-    btn1 = Button(F2, text='Add Mineral', font='arial 15 bold', command=remvcha, padx=5, pady=10, bg='#76ff7a', width=15)
+    btn1 = Button(F2, text='Add Mineral', font='arial 15 bold', command=remvcha, padx=5, pady=10, bg='#8f00ff', width=15)
     btn1.grid(row=3, column=0, padx=10, pady=30)
-    btn2 = Button(F2, text='Generate Bill', font='arial 15 bold', command=remvchg, padx=5, pady=10, bg='#76ff7a',
+    btn2 = Button(F2, text='Generate Bill', font='arial 15 bold', command=remvchg, padx=5, pady=10, bg='#8f00ff',
                   width=15)
     btn2.grid(row=3, column=1, padx=10, pady=30)
-    btn3 = Button(F2, text='Clear', font='arial 15 bold', padx=5, pady=10, command=clear, bg='#76ff7a', width=15)
+    # btn2a = Button(root, text='Next', font='arial 15 bold', command=qr, padx=2, pady=3, bg='#76ff7a', width=6)
+    # btn2a.place(x=950, y=92)
+    btn3 = Button(F2, text='Clear', font='arial 15 bold', padx=5, pady=10, command=clear, bg='#8f00ff', width=15)
     btn3.grid(row=4, column=0, padx=10, pady=30)
-    btn4 = Button(F2, text='Exit', font='arial 15 bold', padx=5, pady=10, command=exit, bg='#76ff7a', width=15)
+    btn4 = Button(F2, text='Exit', font='arial 15 bold', padx=5, pady=10, command=exit, bg='#8f00ff', width=15)
     btn4.grid(row=4, column=1, padx=10, pady=30)
-
-
-"""def vid():
-    global vid
-    vid = TkinterVideo(master=root, scaled=True)
-    vid.load("H:\Tallybug\vid_tally.mp4")
-    vid.pack(expand=True, fill="both")
-    vid.play()
-    root.after(6000, slide1)"""
 
 
 def verify():
@@ -435,10 +437,10 @@ def check():
         messagebox.showinfo("Error", "Please fill the complete field!!")
 
 
+b1 = tk.Button(border2, text="Submit", bg="#6f2da8", font=("Arial", 15), command=check)
+
+
 # button variable for Register
-b1 = tk.Button(border2, text="Submit", bg="#e0b0ff", font=("Arial", 15), command=check)
-
-
 def register():
     border.pack_forget()
     L1.place_forget()
@@ -469,7 +471,15 @@ def register():
     Button.place(x=100, y=450)
 """
 
+
+def logo_pic():
+    root['bg'] = 'black'
+    llabel.place(x=485, y=165)
+    root.after(3000, FirstPage)
+
+
 def FirstPage():
+    llabel.place_forget()
     Label.place_forget()
     Button1.place_forget()
     Button2.place_forget()
@@ -483,27 +493,27 @@ def FirstPage():
     b1.place_forget()
     b2.place_forget()
 
-    label.place(x=0, y=0)
+    label.place(x=-2, y=0)
     border.pack(fill="both", expand=True, padx=370, pady=240)
-    L1.place(x=50, y=20)
-    T1.place(x=180, y=20)
-    L2.place(x=50, y=80)
-    T2.place(x=180, y=80)
+    L1.place(x=64, y=18)
+    T1.place(x=194, y=18)
+    L2.place(x=64, y=74)
+    T2.place(x=194, y=74)
 
     global B1
     global B2
     B1 = tk.Button(border, text="Sign in", font=("Arial", 15), command=verify)
     B1.place(x=260, y=120)
-    B2 = tk.Button(border, text="Register", bg="#ff7f50", font=("Arial", 15), command=register)
+    B2 = tk.Button(border, text="Register", bg="#e51a4c", font=("Arial", 15), command=register)
     B2.place(x=115, y=120)
 
 
+Button1 = tk.Button(root, text="Back", font=("Arial", 15), command=FirstPage, fg='white', bg='black')
 # button variables of Firstpage
-Button1 = tk.Button(root, text="Back", font=("Arial", 15), command=FirstPage)
-Button2 = tk.Button(root, text="Next", font=("Arial", 15), command=slide1)
+Button2 = tk.Button(root, text="Next", font=("Arial", 15), command=slide1, fg='white', bg='black')
 
-# button variable of Register--- since FirstPage needs to be defined first.
 b2 = tk.Button(border2, text="Login", font=("Arial", 15), command=FirstPage)
+# button variable of Register--- since FirstPage needs to be defined first.
 
 
 def SecondPage():
@@ -523,10 +533,10 @@ def SecondPage():
     b1.place_forget()
     B2.place_forget()
 
-    Label.place(x=345, y=200)
+    Label.place(x=343, y=180)
     Button1.place(x=490, y=480)
     Button2.place(x=730, y=480)
 
 
-FirstPage()
+logo_pic()
 root.mainloop()
