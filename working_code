@@ -18,14 +18,13 @@ root = Tk()
 root.title("Recycling Application - Hackathon 2022")
 bg_color = 'Black'
 root.geometry("1215x700")
-root.resizable(None, None)
+root.resizable(0, 0)
 
 # Variable Used
 c_name = StringVar()
 c_phone = StringVar()
 item = StringVar()
 # Rate = IntVar()
-quantity = DoubleVar()
 bill_no = StringVar()
 x = random.randint(1000, 9999)
 bill_no.set(str(x))
@@ -62,20 +61,41 @@ def remvchg():
 
 
 def additm():
-    if type(quantity.get()) != float:
-        messagebox.showinfo('Error', 'Please enter quantity!\n(Numeric Value)')
+    if type(n_txt.get()) == str:
+        try:
+            qq = int(n_txt.get())
+            if type(int(qq)) != int:
+                messagebox.showinfo('Error', 'Please enter quantity!\n(Numeric Value)')
+            else:
+                t = clicked.get()
+                qq = int(n_txt.get())
+                if t != 'Choose Mineral':
+                    if qq != '':
+                        show()
+                        tt = optionss[t]
+                        # n = Rate.get()
+                        m = qq * tt
+                        l.append(m)
+                        if clicked.get() != '':
+                            textarea.insert((10.0 + float(len(l) - 1)), f"{clicked.get()}\t\t{n_txt.get()}\t\t{m}\n")
+                        else:
+                            messagebox.showinfo('Error', 'Please Select Mineral!')
+                    else:
+                        messagebox.showinfo('Error', 'Please enter quantity!')
+        except:
+            messagebox.showinfo('Error', 'Please enter quantity!\n(Numeric Value)')
     else:
         t = clicked.get()
-        q = quantity.get()
+        q = n_txt.get()
         if t != 'Choose Mineral':
             if q != '':
                 show()
                 tt = optionss[t]
                 # n = Rate.get()
-                m = quantity.get() * tt
+                m = n_txt.get() * tt
                 l.append(m)
                 if clicked.get() != '':
-                    textarea.insert((10.0 + float(len(l) - 1)), f"{clicked.get()}\t\t{quantity.get()}\t\t{m}\n")
+                    textarea.insert((10.0 + float(len(l) - 1)), f"{clicked.get()}\t\t{n_txt.get()}\t\t{m}\n")
                 else:
                     messagebox.showinfo('Error', 'Please Select Mineral!')
             else:
@@ -111,7 +131,6 @@ def clear():
     clicked.set('Choose Mineral')
     # Rate.set(0)
     labels.config(text='-', font=('times new roman', 18, 'bold'))
-    quantity.set(0)
     welcome()
 
 
@@ -332,7 +351,7 @@ drop.config(width=32)
 rate = tk.Label(F2, text='Mineral Rate per gram', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#dda0dd')
 rate_txt = Entry(F2, width=20, font='arial 15 bold', relief=SUNKEN, bd=7)
 n = tk.Label(F2, text='Mineral Quantity (in gram)', font=('times new roman', 18, 'bold'), bg=bg_color, fg='#dda0dd')
-n_txt = Entry(F2, width=20, textvariable=quantity, font='arial 15 bold', relief=SUNKEN, bd=7)
+n_txt = Entry(F2, width=20, font='arial 15 bold', relief=SUNKEN, bd=7)
 F3 = Frame(root, relief=GROOVE, bd=10)
 # Bill generation area
 bill_title = tk.Label(F3, text='Bill Generation Area', font='arial 15 bold', bd=7, relief=GROOVE)
@@ -536,7 +555,7 @@ def SecondPage():
     b1.place_forget()
     B2.place_forget()
 
-    Label.place(x=335, y=180)
+    Label.place(x=330, y=180)
     Button1.place(x=490, y=495)
     Button2.place(x=730, y=495)
 
