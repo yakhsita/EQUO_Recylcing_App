@@ -4,18 +4,20 @@ from tkinter import *
 from tkVideoPlayer import TkinterVideo
 from tkinter import messagebox
 import tkinter as tk
-# from PIL import Image, ImageTk
+from PIL import Image, ImageTk
 # import cv2
 # import webbrowser  # pip install pillow
 from html.parser import HTMLParser
 import time
 import random
+from tkinter import ttk
 from datetime import date
 from datetime import datetime
 import math
+import qrcode
 
 root = Tk()
-root.title("Recycling Application - Hackathon 2022")
+root.title("E-Quo - A Mineral Recycling Application from E-Waste9 - Smart India Hackathon 2022")
 bg_color = 'Black'
 root.geometry("1215x700")
 root.resizable(0, 0)
@@ -51,6 +53,7 @@ def remvcha():
         messagebox.showinfo('Error', 'Please select mineral')
     else:
         additm()
+
 
 def remvchg():
     text = "Choose Mineral"
@@ -140,6 +143,74 @@ def exit():
         root.destroy()
 
 
+def knowaboutdevice():
+
+    # Creating app window
+    app = Tk()
+    app['bg'] = 'ivory'
+
+    # Defining title of the app
+    app.title("GUI Application of Python")
+
+    # Defining label of the app and calling a geometry
+    # management method i.e, pack in order to organize
+    # widgets in form of blocks before locating them
+    # in the parent widget
+    ttk.Label(app, text="Know about your device").pack()
+
+    # Creating treeview window
+    treeview = ttk.Treeview(app)
+
+    # Calling pack method on the treeview
+    treeview.pack()
+
+    # Inserting items to the treeview
+    # Inserting parent
+    treeview.insert('', '0', 'item1', text='Select you device.')
+
+    # Inserting child
+    treeview.insert('', '1', 'item2', text='Laptop')
+    treeview.insert('', '2', 'item3', text='Mobile')
+    treeview.insert('', 'end', 'item4', text='Camera')
+
+    # Inserting more than one attribute of an item
+    treeview.insert('item2', 'end', 'Aluminium - 20g', text='Aluminium - 20g')
+    treeview.insert('item2', 'end', 'Copper - 20g', text='Copper - 20g')
+    treeview.insert('item3', 'end', '2018 paper', text='Aluminium - 20g')
+    treeview.insert('item3', 'end', '2019 paper', text='Copper - 20g')
+    treeview.insert('item4', 'end', 'Python', text='Aluminium - 20g')
+    treeview.insert('item4', 'end', 'Java', text='Copper - 20g')
+
+    # Placing each child items in parent widget
+    treeview.move('item2', 'item1', 'end')
+    treeview.move('item3', 'item1', 'end')
+    treeview.move('item4', 'item1', 'end')
+
+    # Calling main()
+    app.mainloop()
+
+
+def save_bill():
+    text_file = open("test.txt", "w")
+    text_file.write(textarea.get(1.0, END))
+    text_file.close()
+    messagebox.showinfo("Save Successfull! ", "Your bill has been saved to the directory")
+    qr_code()
+
+
+def qr_code():
+    f = open('test.txt')
+    data = f.read()
+    img = qrcode.make(data)
+    img.save("secret.png")
+    # Import required libraries
+
+    # Create an object of tkinter ImageTk
+    filename = "H:\\Equo\\" + "secret.png"
+    img = Image.open(filename)
+    img.show()
+
+
 def welcome():
     textarea.delete(1.0, END)
     textarea.insert(END, "\t              Exotic Recycler's India Pvt. Ltd. ")
@@ -160,10 +231,10 @@ def welcome():
 ##------------------------------------------- Variables to be placed ------------------------------------------------##
 
 # logo_pic
-photo = PhotoImage(file="H:\\Equo\\user&pass_pic.png") # bg_pic
+photo = PhotoImage(file="H:\\Equo\\user&pass_pic.png")  # bg_pic
 label = tk.Label(image=photo)
 label.img = photo
-lphoto = PhotoImage(file="H:\\Equo\\ntg.png") # logoooo
+lphoto = PhotoImage(file="H:\\Equo\\ntg.png")  # logoooo
 llabel = tk.Label(image=lphoto, bd=0)
 llabel.img = lphoto
 
@@ -185,32 +256,37 @@ t3 = tk.Entry(border2, width=30, show="*", bd=5)
 
 # SecondPage
 
-Label = tk.Label(root, text='''\nDear User,     
+Label = tk.Label(root, text='''\nDear User,  
 
-    Thank you for choosing e-Recyclers Recycling Software.\t
+        Thank you for choosing E-Quo Recycling Software.\t
+
     INSTRUCTIONS FOR USING THE APP\t
     1. Enter the name of device that is to be recycled.\t
-     2. Select the mineral(s) present in your device from among the following minerals\t
+     2. Select the mineral(s) present in your device from the dropdown
+     3.Enter the quantity of minerals present in your device\t
+         Use "KNOW YOUR DEVICE" options, if you do not know the quantity of minerals.
     3. After entering details, click on ADD MINERAL\t
      4. Once your are done with entering all the required details, Click on Generate Bill\t
 
-    NOTE : Click on NEXT to continue.\t
-
     Thanks & Regards,\t
     Team e-Recyclers \t
-    A program by : Nishant V H, Priyanshu Singh and Yakhsita Hansdah\t\n\n''', font=("Arial Bold", 10),
+    A program by : Yakhsita Hansdah, Nishant V H and Priyanshu Singh\t\n\n''', font=("Arial Bold", 10),
                  bg='ivory', fg='black', bd=10)
 
 # slide1-----------------------------                          ------------------------------
 # lable
-title = tk.Label(root, pady=2, text="Recycling Software for Smart India Hackathon 2022", bd=12, bg=bg_color,
+title = tk.Label(root, pady=2, text="Minerals recycling software from E-Waste", bd=12, bg=bg_color,
                  fg='white', font=('times new roman', 25, 'bold'), relief=GROOVE, justify=CENTER)
-F1 = tk.Label(root, bd=10, relief=GROOVE, font=('times new roman', 15, 'bold'), fg='gold', bg=bg_color)
+F1 = tk.Label(root, bd=7, relief=GROOVE, font=('times new roman', 15, 'bold'), fg='gold', bg=bg_color)
 # detail entry
 cname_lbl = tk.Label(F1, text='Product Name', font=('times new roman', 18, 'bold'), bg=bg_color, fg='white')
 cname_txt = Entry(F1, width=15, textvariable=c_name, font='arial 15 bold', relief=SUNKEN, bd=7)
 cphone_lbl = tk.Label(F1, text='Customer Name ', font=('times new roman', 18, 'bold'), bg=bg_color, fg='white')
 cphone_txt = Entry(F1, width=15, font='arial 15 bold', textvariable=c_phone, relief=SUNKEN, bd=7)
+btn5 = Button(F1, text='Know your device', font='arial 15 bold', command=knowaboutdevice, bg='#8f00ff', bd=2)
+btn5.place(x=820, y=5)
+btn6 = Button(F1, text='Save-QR Code', font='arial 15 bold', command=save_bill, bg='#8f00ff', bd=2)
+btn6.place(x=1030, y=5)
 # lable2
 F2 = tk.LabelFrame(root, text='Product Details', font=('times new roman', 18, 'bold'), fg='#ffe4e1', bg=bg_color)
 # actual detail abt mineral
@@ -342,7 +418,7 @@ optionss = {
 labels = tk.Label(root, text="-", font=('times new roman', 17, 'bold'), bg="white", width=16)
 
 clicked = StringVar()
-clicked.set("Choose Mineral") # initial menu text
+clicked.set("Choose Mineral")  # initial menu text
 drop = OptionMenu(F2, clicked, *options)
 # clicked.get() is the item choosen
 # itm_txt = tk.Label(F2, width=20, textvariable=item, font='arial 15 bold', relief=SUNKEN, bd=7)
@@ -380,7 +456,7 @@ def slide1():
     F2.place(x=20, y=180, width=630, height=500)
 
     itm.grid(row=0, column=0, padx=30, pady=20)
-    #itm_txt.place(x=360, y=22)
+    # itm_txt.place(x=360, y=22)
     drop.place(x=360, y=22)
 
     rate.grid(row=1, column=0, padx=30, pady=20)
@@ -399,16 +475,17 @@ def slide1():
     textarea.pack()
     welcome()
     # Buttons
-    btn1 = Button(F2, text='Add Mineral', font='arial 15 bold', command=remvcha, padx=5, pady=10, bg='#8f00ff', width=15)
+    btn1 = Button(F2, text='Add Mineral', font='arial 15 bold', command=remvcha, padx=5, pady=10, bg='#8f00ff',
+                  width=15, bd=7)
     btn1.grid(row=3, column=0, padx=10, pady=30)
     btn2 = Button(F2, text='Generate Bill', font='arial 15 bold', command=remvchg, padx=5, pady=10, bg='#8f00ff',
-                  width=15)
+                  width=15, bd=7)
     btn2.grid(row=3, column=1, padx=10, pady=30)
     # btn2a = Button(root, text='Next', font='arial 15 bold', command=qr, padx=2, pady=3, bg='#76ff7a', width=6)
     # btn2a.place(x=950, y=92)
-    btn3 = Button(F2, text='Clear', font='arial 15 bold', padx=5, pady=10, command=clear, bg='#8f00ff', width=15)
+    btn3 = Button(F2, text='Clear', font='arial 15 bold', padx=5, pady=10, command=clear, bg='#8f00ff', width=15, bd=7)
     btn3.grid(row=4, column=0, padx=10, pady=30)
-    btn4 = Button(F2, text='Exit', font='arial 15 bold', padx=5, pady=10, command=exit, bg='#8f00ff', width=15)
+    btn4 = Button(F2, text='Exit', font='arial 15 bold', padx=5, pady=10, command=exit, bg='#8f00ff', width=15, bd=7)
     btn4.grid(row=4, column=1, padx=10, pady=30)
 
 
@@ -535,10 +612,13 @@ Button1 = tk.Button(root, text="Back", font=("Arial", 15), command=FirstPage, bg
 Button2 = tk.Button(root, text="Next", font=("Arial", 15), command=slide1, bg='ivory', fg='black')
 
 b2 = tk.Button(border2, text="Login", font=("Arial", 15), command=FirstPage)
+
+
 # button variable of Register--- since FirstPage needs to be defined first.
 
 
 def SecondPage():
+    
     border.pack_forget()
     L1.place_forget()
     T1.place_forget()
@@ -556,8 +636,8 @@ def SecondPage():
     B2.place_forget()
 
     Label.place(x=330, y=180)
-    Button1.place(x=490, y=495)
-    Button2.place(x=730, y=495)
+    Button1.place(x=470, y=510)
+    Button2.place(x=730, y=510)
 
 
 logo_pic()
